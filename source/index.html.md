@@ -101,9 +101,31 @@ You can use this markup to display the customer's current point balance.  Great 
   
 ```
 
+
 #### Display customer's current referral link
 
 You can use this markup to display the customer's current referral link.  Use the class name "swell-referral-link" on the element you would like to display the referral link inside of.
+
+### Referral Discount Code
+```html
+  
+  <!-- the content of the tag will be replaced by the actual referral discount code on page load.
+       Decide what you'd like the customer to see while it loads -->
+
+
+  <!-- show nothing until referral link is loaded -->
+  <span class="swell-referral-discount-code"></span>
+
+
+  <!-- show font awesome spinner until referral link is loaded -->
+  <span class="swell-referral-discount-code"><i class="fa fa-spin fa-spinner"></i></span>
+  
+```
+
+#### Display customer's current referral discount code
+
+You can use this markup to display the customer's current referral discount code.  Use the class name "swell-referral-discount-code" on the element you would like to display the referral discount code inside of.
+
 
 
 ### Earning History
