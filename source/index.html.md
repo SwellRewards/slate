@@ -133,6 +133,11 @@ Use this markup if you want to include some of the referral program components d
     <i class="fa fa-facebook-square"></i> Share your referral link on Facebook
   </a>
 
+  <!-- facebook messenger -->
+  <a class="swell-share-referral-messenger" href="javascript:void(0)">
+    <i class="fa fa-envelope"></i> Share your referral link via Facebook Messenger
+  </a>
+
   <!-- twitter -->
   <a class="swell-share-referral-twitter" href="javascript:void(0)">
     <i class="fa fa-twitter-square"></i> Share your referral link on Twitter
@@ -153,6 +158,7 @@ Use this markup to directly trigger sharing on one of the social media platforms
 Platform | Class
 --------- | ----------- 
 facebook | swell-share-referral-facebook
+facebook messenger | swell-share-referral-messenger
 twitter | swell-share-referral-twitter
 email | swell-share-referral-email
   
