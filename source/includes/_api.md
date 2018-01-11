@@ -1,598 +1,3 @@
----
-title: Swell API Reference
-
-
-toc_footers:
-  - <a href='https://www.swellrewards.com'>Learn more about Swell</a>
-
-
-search: true
----
-
-# MARKUP
-## Introduction
-
-Swell provides some html markup you can use to easily incorporate Swell components directly on your website.  Use this markup to do things as simple as displaying point balances and referral links to building a full blown rewards page from scratch. 
-
-## Campaigns
-```html
-  
-  <!-- as a link but can easily be any html element -->
-  <a class="swell-campaign-link" 
-     data-campaign-id="123" 
-     data-display-mode="modal" 
-     href="javascript:void(0)">Follow Us on Twitter</a>
-  
-```
-
-#### Participate in campaigns
-
-You can use this markup to allow your customers to participate in your campaigns without using the Rewards Popup. Use the class name "swell­-campaign­-link" on any element you'd like to trigger one of your campaigns when clicked. You also need to specify data attributes for the "campaign­-id" and the "display­-mode".
-
-#### Data Attributes
-
-Attribute | Type | Description
---------- | ----------- | -----------
-campaign-id | int | The id of the campaign to trigger.  You can find it in the Swell Admin by clicking on the Customize link for a particular campaign.
-display-mode | string | Can be "modal" or "direct".  Modal will trigger a popup window that shows campaign details with a call to action.  Direct will trigger the action immediately upon click (same effect as clicking the CTA in the modal).
-
-
-## Redemption Options
-```html
-  
-  <!-- as a link but can easily be any html element -->
-  <a class="swell-redemption-link" 
-     data-redemption-option-id="123" 
-     href="javascript:void(0)">Redeem 500 Points for $5 Off Coupon</a>
-  
-```
-
-#### Redeem points for a discount
-
-You can use this markup to allow your customers to redeem their points for a discount without using the Rewards Popup. Use the class name "swell­-redemption-link" on any element you'd like to trigger one of your redemption options when clicked. You also need to specify data attributes for the "redemption-option-id".
-
-#### Data Attributes
-
-Attribute | Type | Description
---------- | ----------- | -----------
-redemption-option-id | int | The id of the redemption option to trigger.  You can find it in the Swell Admin by clicking on the Customize link for a particular option.
-
-## Customer Details
-
-Use any of the below to display program data about the logged in customer.  Make sure to include these elements only if there exists a logged in customer otherwise they will not populate.
-
-### Point Balance
-```html
-  
-  <!-- the content of the tag will be replaced by the actual point balance on page load.
-       Decide what you'd like the customer to see while it loads -->
-
-
-  <!-- show 0 until point balance is loaded -->
-  <span class="swell-point-balance">0</span>
-
-
-  <!-- show nothing until point balance is loaded -->
-  <span class="swell-point-balance"></span>
-
-
-  <!-- show font awesome spinner until point balance is loaded -->
-  <span class="swell-point-balance"><i class="fa fa-spin fa-spinner"></i></span>
-  
-```
-
-#### Display customer's current point balance
-
-You can use this markup to display the customer's current point balance.  Great for reminding the customer how many points they have to use or how close they are to earning a reward.  Use the class name "swell-point-balance" on the element you would like to display the point balance inside of.
-
-### Referral Link
-```html
-  
-  <!-- the content of the tag will be replaced by the actual referral link on page load.
-       Decide what you'd like the customer to see while it loads -->
-
-
-  <!-- show nothing until referral link is loaded -->
-  <span class="swell-referral-link"></span>
-
-
-  <!-- show font awesome spinner until referral link is loaded -->
-  <span class="swell-referral-link"><i class="fa fa-spin fa-spinner"></i></span>
-  
-```
-
-#### Display customer's current referral link
-
-You can use this markup to display the customer's current referral link.  Use the class name "swell-referral-link" on the element you would like to display the referral link inside of.
-
-
-### Earning History
-```html
-  
-  <!-- as a link but can easily be any html element -->
-  <a class="swell-history-link" href="javascript:void(0)">View Rewards History</a>
-  
-```
-
-#### Display customer's rewards history
-
-You can use this markup to display the customer's rewards history.  This will include all the times a customer has earned points, earned a discount, or redeemed points for a discount.  Use the class name "swell-history-link" on the element you would like to trigger the rewards history modal.  
-
-
-## Referral Program
-
-Use this markup if you want to include some of the referral program components directly on your website.  You can setup traditional social share icons that allow your customer to share their referral link on the social media platform of their choice.  You can also directly trigger the Referral Share Popup that you designed in the Swell Admin.
-
-### Sharing
-```html
-  
-  <!-- as links but can easily be any html element -->
-
-  <!-- facebook -->
-  <a class="swell-share-referral-facebook" href="javascript:void(0)">
-    <i class="fa fa-facebook-square"></i> Share your referral link on Facebook
-  </a>
-
-  <!-- twitter -->
-  <a class="swell-share-referral-twitter" href="javascript:void(0)">
-    <i class="fa fa-twitter-square"></i> Share your referral link on Twitter
-  </a>
-
-  <!-- email -->
-  <a class="swell-share-referral-email" href="javascript:void(0)">
-    <i class="fa fa-envelope"></i> Share your referral link via Email
-  </a>
-
-  
-```
-
-Use this markup to directly trigger sharing on one of the social media platforms. They all use a class name with a similar pattern: "swell-share-referral-<platform>"
-
-#### Platform Class Names
-
-Platform | Class
---------- | ----------- 
-facebook | swell-share-referral-facebook
-twitter | swell-share-referral-twitter
-email | swell-share-referral-email
-  
-
-### Popup
-```html
-  
-  <!-- as a link but can easily be any html element -->
-  <a class="swell-referral-link-popup" href="javascript:void(0)">Refer Your Friends</a>
-  
-```
-
-You can use this markup to allow your customers to refer their friends without using the Rewards Popup. Use the class name "swell­-referral-link-popup" on any element you'd like to trigger the popup when clicked. Make sure you have designed and enabled this popup from the Referral Program section of your Swell Admin.
-
-
-
-# JAVASCRIPT SDK
-
-## Introduction
-
-Swell allows you to take even more control of your program by exposing a javascript object on the window called `swellAPI` which enables you to perform many Swell functions programmatically.  In addition to the exposed object, Swell triggers events on the document object enabling you to hook into key interactions your customers are taking with the program.
-
-
-## Events
-```javascript
-  
-  $(document).on("swell:event:name:here", eventHandler);
-
-```
-
-All Swell related events are triggered on the document object.  Please see example on the right for an example of how to listen for these events using jQuery.
-
-### swell:initialized
-```javascript
-  
-  $(document).on("swell:initialized", function(){
-    // do something using my campaigns or redemption options
-  });
-
-```
-
-This event is triggered after page load when the Swell javascript is finished loading.  This is useful if you want to know when you can safely read campaign and redemption option data from the swellAPI object. Note: This is triggered before loading the logged in customers data from Swell.  Please use the Setup event if you are interested in the customers data.
-
-
-### swell:setup
-```javascript
-  
-  $(document).on("swell:setup", function(){
-    // do something using logged in customer (campaigns and redemption options available too)
-  });
-  
-```
-
-This event is triggered after Swell has completely finished setup.  The main difference between setup and initialized is that setup waits until the logged in customer's details have been loaded from Swell servers before firing.
-
-### swell:redemption:created
-```javascript
-  
-  $(document).on("swell:redemption:created", function(redemption){
-    if(redemption.discountType === "product"){
-      // add the free product to cart
-      cartJS.add(redemption.appliesToId);
-    } else {
-      // control the display of the coupon code to your customers
-      myCoolUI.showCouponCode(redemption.couponCode);
-
-      // save the code for later (to display it on future page loads?)
-      sessionStorage.setItem("most-recent-coupon", redemption.couponCode);
-    }
-  });
-  
-```
-
-This event is triggered when a redemption is made by a customer (or programatically via SDK). This is often helpful if you are implementing a custom redemption UX.  The event is passed a single object representing the redemption made.  It will include the following attributes:
-
-#### Redemption Attributes
-
-Attribute | Type | Description
---------- | ----------- | -----------
-couponCode | string | The coupon code for this discount
-pointsUsed | int | The amount of points used for this redemption
-appliesToId | int | The product, variant, or collection id this discount can be used for
-discountType | string |  A string representing the type of discount this redemption was for.  Possible values include: fixed_amount, percentage, variable, shipping, product.
-discountRateCents | int | If converting points to fixed dollar discount this is the conversion rate used in cents per point.
-redemptionOptionId | int | The redemption option that was used to generate this redemption.
-
-
-## Get Customer Details
-
-#### swellAPI.getCustomerDetails()
-
-This method returns an object containing all the program details about the logged in customer.  You can use this to create custom ui's that display items like their current point balance, referral link, and earning/redemption history.
-
-```javascript
-  $(document).on("swell:setup", function(){
-    var customerDetails = swellAPI.getCustomerDetails();
-
-    $("#custom-point-balance-ui").html(customerDetails.pointsBalance);
-    $("#custom-referral-link-ui").html(customerDetails.referralLink);
-
-    customerDetails.actionHistoryItems.forEach(function(item){
-      $("#custom-history-container").append(
-        "<li>" + 
-          item.date   + " -- " + 
-          item.action + " -- " + 
-          item.points + 
-        "</li>");
-    });
-  })
-```
-
-#### Details Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-email | string | The customer's email address
-referralLink | string | The customer's unique referral link
-referralCode | string | The customer's referral code (eg. abcd123)
-pointsBalance | int | The customer's current point balance
-actionHistoryItems | array | The customer's earning and redemption history
-vipTier | obj | An object with details about the customer's current tier level
-vipTierStats | obj | An object with details about the customer's current progress toward vip tiers.
-
-
-#### Action History Item Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-createdAt | datetime | A timestamp when this item was created
-date | date | The date (without time) when this item was created
-action | string | A short description of either the action/campaign completed or the redemption option earned/redeemed
-points | int | The number of points that were either earned or redeemed
-status | string | For campaigns this can either be Approved, Pending, Reversed, or a percentage complete.  For coupons this will be the coupon code
-
-#### VIP Tier Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-name | string | The name of the tier
-description | string | A short description of the tier requirements
-pointsMultiplier | decimal | The points multiplier for the current tier
-
-
-#### VIP Tier Stats Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-pointsEarned | int | How many points the customer has earned within the tier window
-amountSpentCents | int | How many cents the customer has spent within the tier window
-purchasesMade | int | How many purchases the customer has made within the tier window
-
-
-## Refresh Customer Details
-```javascript
-  $(document).on("swell:setup", function(){
-
-    swellAPI.refreshCustomerDetails(function(){
-      var customerDetails = swellAPI.getCustomerDetails();
-    });
-  
-  })
-```
-#### swellAPI.refreshCustomerDetails(callback)
-This method loads the latest customer details from the server.  You usually won't have to use this as the Swell JS automatically refreshes the customer details.  The main use case for this is if you trigger a custom action or point redemption and want to update customer related ui.
-
-
-## Get Campaign Data
-#### swellAPI.getActiveCampaigns()
-
-This method returns an array containing all active campaigns you are running as well as the logged in customer's status toward each one.  You can use this method to build custom ui around your campaigns.
-
-```javascript
-  $(document).on("swell:setup", function(){
-    var activeCampaigns = swellAPI.getActiveCampaigns();
-
-    activeCampaigns.forEach(function(campaign){
-      // render each campaign
-    });
-  })
-```
-
-#### Campaign Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-id | int | The campaign id, useful for setting up click handlers or triggering custom actions
-ctaText | string | ­the call to action button text set in swell admin
-details | string | the description of the campaign set in the swell admin
-title  ­ | string | the one line description of the campaign set in swell admin
-expiresAt | datetime |  campaign expiration if campaign is running for limited time
-icon | string |  the font awesome icon class (or image url) set for this campaign
-rewardText | string | description of the reward the customer will receive for completion 
-customerActionsCompleted | int | number of actions completed (if applicable) 
-customerCanParticipate  | boolean | based on the rules, can this customer participate right now
-customerCompleted | boolean | flag whether or not they have completed the campaign 
-customerCompletions | int | number of times they've completed the campaign 
-customerMinutesUntilNextParticipation | int | number of minutes until customer can participate in the campaign again
-customerHoursUntilNextParticipation | int | number of hours until customer can participate in the campaign again
-customerDaysUntilNextParticipation | int | number of days until customer can participate in the campaign again
-
-## Get Redemption Option Data
-#### swellAPI.getActiveRedemptionOptions()
-
-This method returns an array containing all active redemption options you setup.  You can use this method to build custom ui around your redemption options.
-
-```javascript
-  $(document).on("swell:setup", function(){
-    var redemptionOptions = swellAPI.getActiveRedemptionOptions();
-
-    redemptionOptions.forEach(function(option){
-      // render each option
-    });
-  })
-```
-
-#### Redemption Option Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-id | int | The redemption option id, useful for setting up click handlers or triggering custom redemptions
-name | string | name of this option as set in the admin
-icon | string| the font awesome icon class or image url set for this option
-description | string | the description of this option
-costText | string | the number of points required string set in ad min "200 Points"
-costInPoints | int | the number of points required to redeem this option
-
-
-## Get VIP Tier Data
-#### swellAPI.getVipTiers()
-
-This method returns an array containing all vip tiers you setup.  You can use this method to build custom ui around your vip tier program.
-
-```javascript
-  $(document).on("swell:setup", function(){
-    var vipTiers = swellAPI.getVipTiers();
-
-    vipTiers.forEach(function(tier){
-      // do something with each tier
-    });
-  })
-```
-
-#### VIP Tier Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-id | int | The vip tier id
-name | string | name of this tier as set in the admin
-description | string | the description of this tier
-requiredAmountSpentCents | int | The amount of cents a customer must spend within window to earn this tier
-requiredAmountSpent | string | A version of requiredAmountSpentCents useful for display (e.g. "$100")
-requiredPointsEarned | int | The amount of points a customer must earn within window to earn this tier
-requiredPurchasesMade | int | The amount of purchases a customer must make within window to earn this tier
-pointsMultiplier | decimal | The points multiplier customers earn for reaching this tier
-rank | int | This tiers rank compared to all other tiers.  Useful for determining order.
-
-
-## Show Popups
-#### swellAPI.showPopupByType(type)
-
-This method will show any of the designed popups in Swell by type. Use this if you are using the designed popups and want to show them programmatically.  The following types are possible:
-
-```javascript
-  $(document).on("swell:setup", function(){
-    swellAPI.showPopupByType("RewardsPopup");
-  });
-```
-#### RewardsPopup  ­ 
-The standard rewards popup that customers use to earn points, redeem points, manage referral program, view history, and read faqs. You can configure it in the Rewards Popup section of the Swell Admin.
-
-#### EmailCapturePopup
-This popup is used to collect email addresses for your newsletter. You can configure and design it in the Newsletter Signup section of the Swell Admin.
-
-#### ReferralLinkPopup
-This popup is used by customers to view and share their referral link via social media and email. You can configure and design it in the Referral Program section of the Swell Admin.
-
-#### HistoryPopup  ­ 
-This popup is used to view all point earning and redemption activity. It will also display any coupon codes earned by the customer.
-
-
-## Capture Newsletter Signup
-```javascript
-
-  // probably not the best example but simple way to accomplish capture
-  $(document).on("swell:setup", function(){
-    var existingEmailField = $("#my-esp-email-field");
-    var existingSubmitBtn = $("#my-esp-submit-btn");
-
-    $(existingSubmitBtn).click(function(){
-      var email = existingEmailField.val();
-      swellAPI.captureNewsletterSignup(email);
-    });
-  });
-
-  // ideally your ESP would emit an event when capture was successful
-  $(document).on("swell:setup", function(){
-    $(document).on("esp:captured:email", function(email){
-      swellAPI.captureNewsletterSignup(email);
-    });
-  })
-```
-#### swellAPI.captureNewsletterSignup(email, successCB, errorCB)
-
-This method takes an email address to capture and will record it as having participated in the newsletter signup campaign.  This is useful if you want to use an existing newsletter signup form but still record the capture in Swell.
-
-
-## Send Referral Emails
-```javascript
-
-  $(document).on("swell:setup", function(){
-    var referredCustomersInput = $("#referred-customers-input");
-    var sendEmailsBtn = $("#referred-customers-send-btn");
-
-    $(sendEmailsBtn).click(function(){
-      // assuming you allowed comma separated email input
-      var emails = referredCustomersInput.val().split(",");
-
-      var onSuccess = function(){
-        $("#success").show();
-      }
-
-      var onError = function(err){
-        $("#error").show();
-      }
-
-      swellAPI.sendReferralEmails(emails,onSuccess, onError);
-
-    });
-  });
-
-```
-#### swellAPI.sendReferralEmails(emails, successCB, errorCB)
-
-This method takes an array of email addresses to send the referral email share email to.  This is useful if you are building a custom referral program experience and want your customer to be able to share his referral link with his friends via email.
-
-## Populate Redemption Options
-```javascript
-
-  $(document).on("swell:setup", function(){
-
-    // default option template
-    swellAPI.populateSelectWithRedemptionOptions("select#redemption-options");
-
-    // customize option template
-    var tmpl = '<option class="redemption-option" value="{{id}}">{{name}} for {{costText}}</option>';
-    swellAPI.populateSelectWithRedemptionOptions("select#redemption-options", tmpl);
-  })
-```
-#### swellAPI.popuplateSelectWithRedemptionOptions(selectElSelector, optionTempate)
-
-This method takes a select element selector and appends `<option>` elements for each redemption option.  You could do this yourself using swellAPI.getActiveRedemptionOptions() but this makes it a little simpler.
-
-optionTemplate is an optional template string that uses {{key}} to dictate where to replace redemption option values.  The default string is `<option value="{{id}}">{{name}} ({{costText}})</option>`
-
-
-## Make Redemption
-```javascript
-  $(document).on("swell:setup", function(){
-
-    var redemptionOptionSelect = $("#redemption-option-select");
-
-    var onSuccess = function(redemption){ fillAndSubmitCouponCodeForm(redemption.couponCode); }
-    var onError = function(err) { $("#error").show(); }
-
-    swellAPI.makeRedemption({redemptionOptionId: redemptionOptionSelect.val() }, onSuccess, onError);
-  });
-```
-#### swellAPI.makeRedemption(opts, successCB, errorCB)
-
-This method is used to redeem a customer's points for a discount.  You need to pass the redemptionOptionId of the redemption option they wish to redeem.  If successful the points will be deducted from the customer's account.  You can optionally pass a boolean `delayPointDeduction` set to true to wait until the coupon is used in an order to remove the points.
-
-The redemption object is passed back to the successCB which has information about the discount code (if applicable) that was generated.
-
-
-#### Options
-
-Attribute | Type | Description
---------- | ----------- | -----------
-redemptionOptionId | int | The redemption option id that is being redeemed.
-delayPointDeduction | boolean | (optional, defauls to false) if true points are not deducted until after the order is placed.
-
-#### Redemption Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-couponCode | string | The coupon code for this discount
-pointsUsed | int | The amount of points used for this redemption
-appliesToId | int | The product, variant, or collection id this discount can be used for
-discountType | string |  A string representing the type of discount this redemption was for.  Possible values include: fixed_amount, percentage, variable, shipping, product.
-discountRateCents | int | If converting points to fixed dollar discount this is the conversion rate used in cents per point.
-redemptionOptionId | int | The redemption option that was used to generate this redemption.
-
-## Convert Points to Dollars
-#### swellAPI.convertPointsToDiscount(opts, successCB, errorCB)
-```javascript
-  
-  // let customer enter how many to redeem
-  $(document).on("swell:setup", function(){
-    var amountToRedeem = $("#redemption-amount-input").val();
-    
-    var onSuccess = function(redemption){ fillAndSubmitCouponCodeForm(redemption.couponCode); }
-    var onError = function(err) { $("#error").show(); }
-
-    swellAPI.convertPointsToDiscount({amount: amountToRedeem}, onSuccess, onError);
-  });
-
-  // redeem all of their points
-  // in reality you'd likely want to make sure you aren't redeeming a larger discount
-  // than the current cart total as to not waste points
-  $(document).on("swell:setup", function(){
-    var details = swellAPI.getCustomerDetails();
-    
-    var onSuccess = function(redemption){ fillAndSubmitCouponCodeForm(redemption.couponCode); }
-    var onError = function(err) { $("#error").show(); }
-
-    swellAPI.convertPointsToDiscount({amount: details.pointsBalance}, onSuccess, onError);
-  });
-```
-
-This method is used to redeem a customers points for a fixed discount at some predetermined conversion rate set in your Swell admin.  For example if you setup a redemption rate of 5 cents per point then you could redeem 20 points for a $1 discount code.  If successful the points will be deducted from the customer's account.  You can optionally pass a boolean `delayPointDeduction` set to true to wait until the coupon is used in an order to remove the points.
-
-#### Options
-
-Attribute | Type | Description
---------- | ----------- | -----------
-amount | int | The number of points to redeem
-delayPointDeduction | boolean | (optional, defauls to false) if true points are not deducted until after the order is placed.
-
-#### Redemption Object
-
-Attribute | Type | Description
---------- | ----------- | -----------
-couponCode | string | The coupon code for this discount
-pointsUsed | int | The amount of points used for this redemption
-appliesToId | int | The product, variant, or collection id this discount can be used for
-discountType | string |  A string representing the type of discount this redemption was for.  Possible values include: fixed_amount, percentage, variable, shipping, product.
-discountRateCents | int | If converting points to fixed dollar discount this is the conversion rate used in cents per point.
-redemptionOptionId | int | The redemption option that was used to generate this redemption.
-
-
 # API
 
 ## Introduction
@@ -680,7 +85,7 @@ end
 
 ```
 
-This endpoint both creates and updates a customer's record in our system.  Use this primarily to notify us when you add a customer manually in your admin or a customer changes their email address. 
+This endpoint both creates and updates a customer's record in our system.  Use this primarily to notify us when you add a customer manually in your admin or a customer changes their email address.
 
 
 #### HTTP Request
@@ -692,9 +97,9 @@ This endpoint both creates and updates a customer's record in our system.  Use t
 Parameters | Type | Description
 --------- | ----------- | -----------
 id | string | The identifier used to uniquely identify the customer in your system.
-email | string | 
-first_name | string | 
-last_name | string | 
+email | string |
+first_name | string |
+last_name | string |
 
 
 
@@ -897,7 +302,7 @@ This endpoint returns a list of campaigns available for customers to participate
 Parameters | Type | Description
 --------- | ----------- | -----------
 with_status | boolean (optional) | Defaults to false.  Enable to get a particular customer's status for each campaign. Either customer_id or customer_email are required for this to work.
-customer_id | string (optional) | The id used to identify the customer. 
+customer_id | string (optional) | The id used to identify the customer.
 customer_email | string (optional) | The email address used to identify the customer.
 
 
@@ -1049,7 +454,7 @@ none required
 
 Parameters | Type | Description
 --------- | ----------- | -----------
-id | int | unique identifier 
+id | int | unique identifier
 name | string | option title (e.g. $5.00 Off)
 description | string | short description (e.g. Get $5 Off every item in our store for 500 Points)
 icon | string | image if url, otherwise font awesome class name
@@ -1104,7 +509,7 @@ item = Hash.new
 item[:id] = "PRO_FHR93H9H912GG"
 item[:name] = "iPhone 7 128GB"
 item[:quantity] = 2
-item[:price_cents] = 74900 
+item[:price_cents] = 74900
 
 order[:items] = [item]
 
@@ -1133,7 +538,7 @@ This endpoint records an order made by a customer.  It will apply the order to a
 #### Query Parameters
 
 Parameters | Type | Description
---------- | ----------- | ----------- 
+--------- | ----------- | -----------
 customer_email | string | The email address of the customer who placed the order.
 total_amount_cents | int | The total amount the customer spent in cents.
 currency_code | string | The currency used (e.g. 'USD').
@@ -1172,12 +577,12 @@ Parameters | Type | Description
 --------- | ----------- | -----------
 country_code | string | The two character country code (e.g. "US").
 first_name | string |
-last_name | string | 
-address1 | string | 
-address2 | string | 
+last_name | string |
+address1 | string |
+address2 | string |
 city | string |
-state | string | 
-zip | string | 
+state | string |
+zip | string |
 phone | string |
 
 
@@ -2050,7 +1455,7 @@ Example Event JSON Structure:
 
 ```
 
-This event is triggered when a customer meets the requirement for a new tier. This is great for letting a customer know they reached a certain status level. 
+This event is triggered when a customer meets the requirement for a new tier. This is great for letting a customer know they reached a certain status level.
 
 
 Important Attributes | Description
@@ -2137,16 +1542,12 @@ Example Event JSON Structure:
 
 ```
 
-This event is triggered when a customer fails to meet the requirement for a tier after the specified period of time has passed. 
+This event is triggered when a customer fails to meet the requirement for a tier after the specified period of time has passed.
 
 
 Important Attributes | Description
 --------- | -----------
 email | The email address of the customer who earned the new tier.
 customer | The customer object who earned the new tier.
-new_tier | Object describing the new tier they dropped to.  Attribute won't be present if they now have no tier.
+new_tier | Object describing the new tier they dropped to. Attribute won't be present if they now have no tier.
 old_tier | Object describing the tier they just lost.
-
-
-
-
