@@ -28,7 +28,7 @@ action[:action_name] = "completed_survey"
 action[:merchant_id] = 12345
 action[:api_key] = "MY_API_KEY"
 
-conn = Faraday.new(:url => "https://www.swellrewards.com")
+conn = Faraday.new(:url => "https://app.swellrewards.com")
 
 response = conn.post do |req|
   req.url "/api/v2/actions"
@@ -42,7 +42,7 @@ This endpoint records an action performed by a customer.  It will apply the acti
 
 #### HTTP Request
 
-`POST https://www.swellrewards.com/api/v2/actions`
+`POST https://app.swellrewards.com/api/v2/actions`
 
 #### Query Parameters
 
@@ -75,7 +75,7 @@ customer[:last_name] = "Smith"
 customer[:merchant_id] = 12345
 customer[:api_key] = "MY_API_KEY"
 
-conn = Faraday.new(:url => "https://www.swellrewards.com")
+conn = Faraday.new(:url => "https://app.swellrewards.com")
 
 response = conn.post do |req|
   req.url "/api/v2/customers"
@@ -90,7 +90,7 @@ This endpoint both creates and updates a customer's record in our system.  Use t
 
 #### HTTP Request
 
-`POST https://www.swellrewards.com/api/v2/customers`
+`POST https://app.swellrewards.com/api/v2/customers`
 
 #### Query Parameters
 
@@ -116,7 +116,7 @@ customer_data[:customer_email] = "john@example.com"
 customer_data[:merchant_id] = 12345
 customer_data[:api_key] = "MY_API_KEY"
 
-connection = Faraday.new "https://www.swellrewards.com" do |conn|
+connection = Faraday.new "https://app.swellrewards.com" do |conn|
   conn.response :json, :content_type => 'application/json'
 end
 
@@ -133,7 +133,7 @@ This endpoint returns a Swell customer record.  Most commonly used to fetch a cu
 
 #### HTTP Request
 
-`GET https://www.swellrewards.com/api/v2/customers?customer_email=john@example.com`
+`GET https://app.swellrewards.com/api/v2/customers?customer_email=john@example.com`
 
 #### Query Parameters
 
@@ -230,7 +230,7 @@ redemption[:redemption_option_id] = 12345
 redemption[:merchant_id] = 12345
 redemption[:api_key] = "MY_API_KEY"
 
-conn = Faraday.new(:url => "https://www.swellrewards.com")
+conn = Faraday.new(:url => "https://app.swellrewards.com")
 
 response = conn.post do |req|
   req.url "/api/v2/redemptions"
@@ -245,7 +245,7 @@ This endpoint will redeem a customer's points for a particular redemption option
 
 #### HTTP Request
 
-`POST https://www.swellrewards.com/api/v2/redemptions`
+`POST https://app.swellrewards.com/api/v2/redemptions`
 
 #### Query Parameters
 
@@ -283,7 +283,7 @@ params = Hash.new
 params[:merchant_id] = 12345
 params[:api_key] = "MY_API_KEY"
 
-connection = Faraday.new "https://www.swellrewards.com" do |conn|
+connection = Faraday.new "https://app.swellrewards.com" do |conn|
   conn.response :json, :content_type => 'application/json'
 end
 
@@ -295,7 +295,7 @@ This endpoint returns a list of campaigns available for customers to participate
 
 #### HTTP Request
 
-`GET https://www.swellrewards.com/api/v2/campaigns`
+`GET https://app.swellrewards.com/api/v2/campaigns`
 
 #### Query Parameters
 
@@ -316,7 +316,7 @@ customer_email | string (optional) | The email address used to identify the cust
   "type": "TwitterTweetCampaign",
   "cta_text": "Send Tweet",
   "share_text": "SwellRewards is the coolest company, we love them.",
-  "url": "https://www.swellrewards.com",
+  "url": "https://app.swellrewards.com",
   "username": null,
   "entity_id": null,
   "icon": "fa-twitter",
@@ -409,7 +409,7 @@ params = Hash.new
 params[:merchant_id] = 12345
 params[:api_key] = "MY_API_KEY"
 
-connection = Faraday.new "https://www.swellrewards.com" do |conn|
+connection = Faraday.new "https://app.swellrewards.com" do |conn|
   conn.response :json, :content_type => 'application/json'
 end
 
@@ -421,7 +421,7 @@ This endpoint returns a list of redemption options available for customers to re
 
 #### HTTP Request
 
-`GET https://www.swellrewards.com/api/v2/redemption_options`
+`GET https://app.swellrewards.com/api/v2/redemption_options`
 
 #### Query Parameters
 
@@ -518,7 +518,7 @@ order[:items] = [item]
 order[:merchant_id] = 12345
 order[:api_key] = "MY_API_KEY"
 
-conn = Faraday.new(:url => "https://www.swellrewards.com")
+conn = Faraday.new(:url => "https://app.swellrewards.com")
 
 response = conn.post do |req|
   req.url "/api/v2/orders"
@@ -533,7 +533,7 @@ This endpoint records an order made by a customer.  It will apply the order to a
 
 #### HTTP Request
 
-`POST https://www.swellrewards.com/api/v2/orders`
+`POST https://app.swellrewards.com/api/v2/orders`
 
 #### Query Parameters
 
@@ -604,7 +604,7 @@ refund[:total_amount_cents] = 250
 refund[:merchant_id] = 12345
 refund[:api_key] = "MY_API_KEY"
 
-conn = Faraday.new(:url => "https://www.swellrewards.com")
+conn = Faraday.new(:url => "https://app.swellrewards.com")
 
 response = conn.post do |req|
   req.url "/api/v2/refunds"
@@ -619,7 +619,7 @@ This endpoint records an refund made by you for an existing order.  It will appl
 
 #### HTTP Request
 
-`POST https://www.swellrewards.com/api/v2/refunds`
+`POST https://app.swellrewards.com/api/v2/refunds`
 
 #### Query Parameters
 
