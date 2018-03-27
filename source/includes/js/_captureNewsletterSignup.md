@@ -19,6 +19,15 @@
     });
   })
 ```
+
 #### swellAPI.captureNewsletterSignup(email, successCB, errorCB)
 
-This method takes an email address to capture and will record it as having participated in the newsletter signup campaign.  This is useful if you want to use an existing newsletter signup form but still record the capture in Swell.
+This method takes an email address to capture and will record it as having participated in the newsletter signup campaign. This is useful if you want to use an existing newsletter signup form but still record the capture in Swell.
+
+#### Parameters
+
+Parameter | Type      | Description
+--------- | --------- | -----------
+email     | string    | The email address of the user to be signed up to the newsletter
+successCB | function  | The function to be called if the signup is successful
+errorCB   | function  | The function to be called if the signup is unsuccessful
