@@ -45,6 +45,17 @@ $(document).on("swell:redemption:created", function(redemption) {
 
 This event is triggered when a redemption is made by a customer (or programatically via SDK). This is often helpful if you are implementing a custom redemption UX. The event is passed a single object representing the redemption made. It will include the following attributes:
 
+#### Redemption Attributes
+
+| Attribute          | Type   | Description                                                                                                                                         |
+| ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| couponCode         | string | The coupon code for this discount                                                                                                                   |
+| pointsUsed         | int    | The amount of points used for this redemption                                                                                                       |
+| appliesToId        | int    | The product, variant, or collection id this discount can be used for                                                                                |
+| discountType       | string | A string representing the type of discount this redemption was for. Possible values include: fixed_amount, percentage, variable, shipping, product. |
+| discountRateCents  | int    | If converting points to fixed dollar discount this is the conversion rate used in cents per point.                                                  |
+| redemptionOptionId | int    | The redemption option that was used to generate this redemption.                                                                                    |
+
 ### swell:referred:customer:discount
 
 ```javascript
@@ -72,14 +83,3 @@ $(document).ready(function() {
 ```
 
 This event is triggered when an eligible referred customer clicks a referral link. This is often helpful if you are implementing a custom referred customer user experience. The event is passed the coupon code the customer earned.
-
-#### Redemption Attributes
-
-| Attribute          | Type   | Description                                                                                                                                         |
-| ------------------ | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| couponCode         | string | The coupon code for this discount                                                                                                                   |
-| pointsUsed         | int    | The amount of points used for this redemption                                                                                                       |
-| appliesToId        | int    | The product, variant, or collection id this discount can be used for                                                                                |
-| discountType       | string | A string representing the type of discount this redemption was for. Possible values include: fixed_amount, percentage, variable, shipping, product. |
-| discountRateCents  | int    | If converting points to fixed dollar discount this is the conversion rate used in cents per point.                                                  |
-| redemptionOptionId | int    | The redemption option that was used to generate this redemption.                                                                                    |
