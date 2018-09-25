@@ -160,6 +160,9 @@ with_history | boolean | Defaults to false.  If you'd like information about the
   "last_purchase_at": "2016-09-10T13:44:15.000Z",
   "points_expire_at": "2019-12-15T18:41:13.000Z",
   "last_seen_at": "2016-09-10T18:41:13.000Z",
+  "birthday_month": 1,
+  "birth_day": 1,
+  "birthday_year": 1990,
 
   "referral_code": {
     "code": "ABC123",
