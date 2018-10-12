@@ -87,7 +87,6 @@ end
 
 This endpoint both creates and updates a customer's record in our system.  Use this primarily to notify us when you add a customer manually in your admin or a customer changes their email address.
 
-
 #### HTTP Request
 
 `POST https://app.swellrewards.com/api/v2/customers`
@@ -101,6 +100,46 @@ email | string |
 first_name | string |
 last_name | string |
 
+
+### Set customer birthday
+
+```ruby
+require 'faraday'
+
+customer = Hash.new
+customer[:customer_email] = "john@example.com"
+customer[:day] = 20
+customer[:month] = 6
+customer[:year] = 1987
+
+# add authentication params (could also use headers)
+customer[:merchant_id] = 12345
+customer[:api_key] = "MY_API_KEY"
+
+conn = Faraday.new(:url => "https://app.swellrewards.com")
+
+response = conn.post do |req|
+  req.url "/api/v2/customer_birthdays"
+  req.headers['Content-Type'] = 'application/json'
+  req.body = customer.to_json
+end
+
+```
+
+This endpoint both creates and updates a customer's birthday record in our system.  Note: It will reschedule the job that rewards them on their birthday anytime you set it.
+
+#### HTTP Request
+
+`POST https://app.swellrewards.com/api/v2/customer_birthdays`
+
+#### Query Parameters
+
+Parameters | Type | Description
+--------- | ----------- | -----------
+customer_email | string | The email address of the customer
+day | int | the day of the month this customer was born (1-31)
+month | int | the month this customer was born (1-12)
+year | int | the four digit year the customer was born
 
 
 ### Fetch customer details
