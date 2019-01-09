@@ -50,4 +50,4 @@ This is a helper to use our out-of-the-box buy product with points on Shopify. I
 
 2. Setup a "Shopify Script" that looks for the line item properties in the cart and reduces the price accordingly.
 
-We have written <a target="_blank" href="https://help.swellrewards.com/article/191-product-redemptions">more detailed instructions</a> to help you get this feature setup.
+We have written <a target="_blank" href="https://support.yotpo.com/en/article/offering-products-as-redemption-options">more detailed instructions</a> to help you get this feature setup.
